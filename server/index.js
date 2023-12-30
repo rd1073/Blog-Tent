@@ -1,11 +1,11 @@
 require('dotenv').config();
 
 const express = require("express");
-//const conn=require("./config/db")
+const conn=require("./config/db")
 const app = express();
 const cors = require('cors');
 
-//const authRoutes=require("./routes/authRoutes")
+const authRoutes=require("./routes/authRoutes")
 //const productRoutes=require("./routes/productRoutes")
 
 
@@ -24,7 +24,7 @@ app.use(
 app.use(cors());
 
 //auth api
-//app.use("/auth", authRoutes);
+app.use("/auth", authRoutes);
 
 //poduct routes
 //app.use("/", productRoutes);

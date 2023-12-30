@@ -47,10 +47,16 @@ const BlogPostSchema = new mongoose.Schema({
     title: {
       type: String,
       required: true,
+      unique:true
     },
-    content: {
+    desc: {
       type: String,
       required: true,
+    },
+    photo:{
+        type:String,
+        required:false,
+        
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,
@@ -72,7 +78,32 @@ const BlogPostSchema = new mongoose.Schema({
     },
   });
   
- 
+  const Blogs = conn.model('Blogs', BlogPostSchema);
 
 
-module.exports = { conn, User};
+  //comments
+  const CommentSchema = new mongoose.Schema({
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    blog: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Blogs',
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+  });
+
+  const Comment = conn.model('Comment', CommentSchema);
+
+
+module.exports = { conn, User, Blogs, Comment};
