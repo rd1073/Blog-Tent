@@ -60,22 +60,32 @@ const Register = async (req, res) => {
   
   const Login = async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { identifier, password } = req.body;
         
-        if (!username || !password) {
+        if (!identifier || !password) {
           return res.status(400).json({ msg: "Identifier and password are required" });
         }
 
-        const user = await User.findOne({ username });
-  
+   
+        let user = await User.findOne({
+          
+            email: identifier,
+                  });
+    
+        // If the identifier is not an email, check if it's a username
         if (!user) {
-          res.status(400).json({ error: "Username is already taken" });
-          return;
+          user = await User.findOne({
+            
+              username: identifier,
+            
+          });
         }
+    
         // Check if the user with the specified email or username exists
         if (!user) {
           return res.status(404).json({ msg: "User not found" });
         }
+    
 
 
         console.log(user);

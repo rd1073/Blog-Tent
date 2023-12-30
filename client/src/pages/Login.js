@@ -6,40 +6,45 @@ import { Link, useNavigate } from 'react-router-dom'; // Assuming you're using R
 
 
 const Login = () => {
-    const [username, setUsername] = useState('');  
+    const [identifier, setIdentifier] = useState('');  
 
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
 
-      const handleLogin = async () => {
-        if (!username || !password) {
+      const handleLogin = async (e) => {
+        e.preventDefault(); // Prevent the default form submission
+
+        if (!identifier || !password) {
           console.log('Please fill in all the fields');
           return;
         }
     
         try {
-          const config = {
-            headers: {
-              'Content-type': 'application/json',
-            },
-          };
-    
-          const res = await axios.post(
-            'http://localhost:5000/auth/loginn',
-            {
-              username,
-              password,
-            },
-            config
-          );
-          console.log("login succefull");
-          navigate('/');
+            const config = {
+              headers: {
+                "Content-type": "application/json",
+              },
+            };
+            const { data } = await axios.post(
+              "http://localhost:5000/auth/loginn",
+              {
+              
+                identifier,
+                password,
+                
+              },
+              config
+            );
+            console.log(data);
+            console.log("login succesfull");
+            sessionStorage.setItem("userInfo", JSON.stringify(data));
+            
+            navigate('/home');
 
         
     
-          sessionStorage.setItem('userInfo', JSON.stringify(res.data));
-    
+     
           
     
         } catch (error) {
@@ -60,14 +65,23 @@ const Login = () => {
                     </p>
                     <div className="mb-2">
                         <div className=" relative ">
-                            <input type="text" value={username}
-            onChange={(e) => setUsername(e.target.value)} id="username" name="username" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="email or username"/>
+                            <input type="text" id="identifier"
+            
+                        name="identifier"
+                        value={identifier}
+                        onChange={(e) => setIdentifier(e.target.value)} 
+                        className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="email or username"/>
                             </div>
                         </div>
                         <div className="mb-2">
                             <div className=" relative ">
-                                <input type="password"  value={password}
-            onChange={(e) => setPassword(e.target.value)} id="password" name="password" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="password"/>
+                                <input type="password" 
+                                name="password"
+                                label="Password"
+                                 
+                                id="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)} className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="password"/>
                                 </div>
                             </div>
                             <div className="flex items-center justify-between mt-4">
