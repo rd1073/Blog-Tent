@@ -60,52 +60,40 @@ const Register = async (req, res) => {
   
   const Login = async (req, res) => {
     try {
-        const { identifier, password } = req.body;
-    
-        if (!identifier || !password) {
+        const { username, password } = req.body;
+        
+        if (!username || !password) {
           return res.status(400).json({ msg: "Identifier and password are required" });
         }
-    
-        // Check if the identifier is an email
-        let user = await User.findOne({
-        
-            email: identifier,
-        
-        });
-    
-        // If the identifier is not an email, check if it's a username
+
+        const user = await User.findOne({ username });
+  
         if (!user) {
-          user = await User.findOne({
-            
-              username: identifier,
-            
-          });
+          res.status(400).json({ error: "Username is already taken" });
+          return;
         }
-    
         // Check if the user with the specified email or username exists
         if (!user) {
           return res.status(404).json({ msg: "User not found" });
         }
-        console.log(user);
-        const match = await bcrypt.compare(password, user.password);
-        if (!match) return res.status(400).json({ msg: "Wrong Password" });
-    
-        const userId = user.id;
-        const username = user.username;
-        const email = user.email;
-        const firstname = user.firstname;
-        const lastname = user.lastname;
 
-        const accessToken = generateToken(userId);
-    
-        res.json({
-          userId: userId,
-          username: username,
-          email: email,
-          firtname: firstname,
-          lastname: lastname,
-          accessToken: accessToken,
-        });
+
+        console.log(user);
+
+        if (user && (await bcrypt.compare(password, user.password))) {
+          console.log("login succesful");
+          res.json({
+              _id: user._id,
+              username: user.username,
+              token: generateToken(user._id),
+            });
+        } else{
+          res.status(401);
+          throw new Error("Invalid Username or Password");
+  
+        }
+
+         
       } catch (error) {
         console.log(error);
         res.status(500).json({ msg: "Internal Server Error" });

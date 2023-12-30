@@ -16,7 +16,7 @@ const Navbar = () => {
 
 
               <form
-            onSubmit={(e) => e.preventDefault()} 
+         
             className="max-w-md px-4 mx-auto mt-12">
             <div className="relative">
                 <svg xmlns="http://www.w3.org/2000/svg" className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -33,7 +33,7 @@ const Navbar = () => {
                    
 
                    
-                      <button a href="/login" style={{ fontSize: '2em' }} className="text-white bg-green-500 px-4 py-2 rounded-md block md:inline-block md:w-auto">
+                      <button style={{ fontSize: '2em' }} className="text-white bg-green-500 px-4 py-2 rounded-md block md:inline-block md:w-auto">
                       <FaPenNib />
 
 

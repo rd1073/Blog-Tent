@@ -8,7 +8,7 @@ const protect=require("../config/protect")
 
   
 router.route("/signup").post(Register);
-router.route("/login").post(Login);
+router.route("/loginn").post(Login);
 
  //protected User routes for the react
 router.route("/private").get(protect, (req, res) => {
