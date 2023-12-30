@@ -1,7 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import {BsSearch} from 'react-icons/bs'
 import {FaBars} from 'react-icons/fa'
-import { FaShoppingCart } from "react-icons/fa";
+import { FaPenNib } from "react-icons/fa6";
+
 
 
 const Navbar = () => {
@@ -33,7 +34,8 @@ const Navbar = () => {
 
                    
                       <button a href="/login" style={{ fontSize: '2em' }} className="text-white bg-green-500 px-4 py-2 rounded-md block md:inline-block md:w-auto">
-                      <FaShoppingCart />
+                      <FaPenNib />
+
 
                       </button>
                    
