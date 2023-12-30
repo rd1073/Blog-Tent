@@ -1,13 +1,26 @@
 import React, { useContext, useState } from 'react'
+import { ImCross } from "react-icons/im";
 
  
 const CreatePost = () => {
     const [title,setTitle]=useState("")
     const [desc,setDesc]=useState("")
     const [file,setFile]=useState(null)
-    const [cat,setCat]=useState("")
-    const [cats,setCats]=useState([])
+    const [tag,setTag]=useState("")
+    const [tags,setTags]=useState([])
 
+    const deleteTag=(i)=>{
+        let updatedTags=[...tags]
+        updatedTags.splice(i)
+        setTags(updatedTags)
+     }
+ 
+     const addTag=()=>{
+         let updatedTags=[...tags]
+         updatedTags.push(tag)
+         setTag("")
+         setTags(updatedTags)
+     }
 
   return (
     <div>
@@ -31,36 +44,35 @@ const CreatePost = () => {
       className='px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
     />
 
-    {/* Post Categories (if needed) */}
-    {/* Uncomment this section if you want to include categories
-    <div className='flex items-center space-x-4 md:space-x-8'>
+    {/* Post Tageegories (if needed) */}
+     <div className='flex items-center space-x-4 md:space-x-8'>
       <input
-        value={cat}
-        onChange={(e) => setCat(e.target.value)}
+        value={tag}
+        onChange={(e) => setTag(e.target.value)}
         className='px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
-        placeholder='Enter post category'
+        placeholder='Enter post Tag'
         type="text"
       />
       <div
-        onClick={addCategory}
+        onClick={addTag}
         className='bg-black text-white px-4 py-2 font-semibold cursor-pointer rounded-md hover:bg-gray-800'
       >
         Add
       </div>
     </div>
-    */}
+    
 
-    {/* Categories Display (if needed) */}
-    {/* Uncomment this section if you want to display categories
+    {/* Tagegories Display (if needed) */}
+    
     <div className='flex px-4 mt-3'>
-      {cats?.map((c, i) => (
+      {tags?.map((c, i) => (
         <div key={i} className='flex justify-center items-center space-x-2 mr-4 bg-gray-200 px-2 py-1 rounded-md'>
           <p>{c}</p>
-          <p onClick={() => deleteCategory(i)} className='text-white bg-black rounded-full cursor-pointer p-1 text-sm'><ImCross/></p>
+          <p onClick={() => deleteTag(i)} className='text-white bg-black rounded-full cursor-pointer p-1 text-sm'><ImCross/></p>
         </div>
       ))}
     </div>
-    */}
+    
 
     {/* Post Description */}
     <textarea

@@ -3,7 +3,7 @@ import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer class="bg-white dark:bg-gray-800 w-full py-8">
+    <footer class=" dark:bg-gray-800 w-full py-8">
     <div class="max-w-screen-xl px-4 mx-auto">
         <ul class="flex flex-wrap justify-between max-w-screen-md mx-auto text-lg font-light">
             <li class="my-2">
@@ -66,9 +66,7 @@ const Footer = () => {
                     </button>
                 </form>
             </div>
-            <div class="text-center text-gray-500 dark:text-gray-200 pt-10 sm:pt-12 font-light flex items-center justify-center">
-                Created by Charlie
-            </div>
+             
         </div>
     </footer>
 
