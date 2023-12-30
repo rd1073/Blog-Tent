@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import {BsSearch} from 'react-icons/bs'
 import {FaBars} from 'react-icons/fa'
+import { FaShoppingCart } from "react-icons/fa";
 
 
 const Navbar = () => {
@@ -28,17 +29,14 @@ const Navbar = () => {
             </div>
         </form>
               <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-x-4 md:space-y-0 flex-wrap">
-                  <h3 className="mb-2 md:mb-0">
-                      <a href="/register" className="text-white bg-blue-500 px-4 py-2 rounded-md block md:inline-block md:w-auto">
-                          Register
-                      </a>
-                  </h3>
+                   
 
-                  <h3>
-                      <a href="/login" className="text-white bg-green-500 px-4 py-2 rounded-md block md:inline-block md:w-auto">
-                          Login
-                      </a>
-                  </h3>
+                   
+                      <button a href="/login" style={{ fontSize: '2em' }} className="text-white bg-green-500 px-4 py-2 rounded-md block md:inline-block md:w-auto">
+                      <FaShoppingCart />
+
+                      </button>
+                   
               </div>
 
 
