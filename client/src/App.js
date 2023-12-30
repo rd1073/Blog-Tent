@@ -4,11 +4,13 @@ import Home from './pages/Home';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Navbar from './components/Navbar';
 
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
      
      <Router>
       <div>

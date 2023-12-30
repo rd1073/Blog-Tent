@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 const Home = () => {
   return (
     <div>
-        <Navbar />
+        
        {/* <div className="w-full flex mt-8 space-x-4">
    
     <div className="w-[35%] h-[200px] flex justify-center items-center">
