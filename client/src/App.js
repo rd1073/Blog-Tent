@@ -7,10 +7,12 @@ import Login from './pages/Login';
 import Navbar from './components/Navbar';
 import CreatePost from './pages/CreatePost';
 import Footer from './components/Footer';
+import { AuthProvider } from '../src/context/authContext';
 
 
 function App() {
   return (
+    <AuthProvider>
     <div className="App">
       <Navbar />
      
@@ -38,6 +40,7 @@ function App() {
 
     
     </div>
+    </AuthProvider>
   );
 }
 

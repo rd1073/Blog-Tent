@@ -3,6 +3,9 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom'; // Assuming you're using React Router for navigation
+import { useAuth } from '../context/authContext';
+
+
 
 
 const Login = () => {
@@ -11,6 +14,8 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
+    const [ setAuth, setLog ] = useAuth();
+
 
       const handleLogin = async (e) => {
         e.preventDefault(); // Prevent the default form submission
@@ -26,7 +31,7 @@ const Login = () => {
                 "Content-type": "application/json",
               },
             };
-            const { data } = await axios.post(
+            const res  = await axios.post(
               "http://localhost:5000/auth/loginn",
               {
               
@@ -36,11 +41,20 @@ const Login = () => {
               },
               config
             );
-            console.log(data);
+
+            if (res && res.data.success) {
+                setAuth({
+                  user: res.data.user,
+                  token: res.data.token,
+                });
+                setLog(true);
+              }
+            
             console.log("login succesfull");
-            sessionStorage.setItem("userInfo", JSON.stringify(data));
+            sessionStorage.setItem("userInfo", JSON.stringify(res.data));
             
             navigate('/home');
+            window.location.reload();
 
         
     

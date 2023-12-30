@@ -1,12 +1,28 @@
-import { Link, useLocation, useNavigate } from "react-router-dom"
+ 
 import {BsSearch} from 'react-icons/bs'
 import {FaBars} from 'react-icons/fa'
 import { FaPenNib } from "react-icons/fa6";
+import { useAuth } from '../context/authContext'
+import { NavLink, Link ,  useLocation, useNavigate} from "react-router-dom";
 
 
 
 const Navbar = () => {
+  const [auth, setAuth,
+    log, setLog]=useAuth()
   
+    const handleLogout = () => {
+
+      setAuth({
+        ...auth,
+        user: null,
+        token: "",
+      });
+        
+      sessionStorage.removeItem("userInfo");
+      
+  
+    };
 
     
 
@@ -29,17 +45,43 @@ const Navbar = () => {
                 />
             </div>
         </form>
-              <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-x-4 md:space-y-0 flex-wrap">
+
+
+        {!auth?.user ? (
+                 
+                   <>
+                   <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-x-4 md:space-y-0 flex-wrap">
+                          <a href="/register" style={{ fontSize: '2em' }} className="text-white bg-green-500 px-4 py-2 rounded-md block md:inline-block md:w-auto">
+                            Register
+                          </a>
+                          <a href="/login" style={{ fontSize: '2em' }} className="text-white bg-green-500 px-4 py-2 rounded-md block md:inline-block md:w-auto">
+                            Login
+                          </a>
+                        </div>
+
+                </>
+              ) : (
+                <>
+                 <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-x-4 md:space-y-0 flex-wrap">
                    
 
                    
-                      <button style={{ fontSize: '2em' }} className="text-white bg-green-500 px-4 py-2 rounded-md block md:inline-block md:w-auto">
-                      <FaPenNib />
+                   <button style={{ fontSize: '2em' }} className="text-white bg-green-500 px-4 py-2 rounded-md block md:inline-block md:w-auto">
+                   <FaPenNib />
 
 
-                      </button>
-                   
-              </div>
+                   </button>
+                
+           
+                   <button style={{ fontSize: '1.2em' }} className="text-white bg-green-500 px-4 py-2 rounded-md block md:inline-block md:w-auto" onClick={handleLogout}>
+                          Logout
+                        </button>
+
+                        </div>
+                </>
+              )}
+          
+              
 
 
 
