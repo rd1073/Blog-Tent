@@ -27,6 +27,8 @@ const Navbar = () => {
         token: "",
       });
         
+    
+      navigate("/home");
       sessionStorage.removeItem("userInfo");
       
   
