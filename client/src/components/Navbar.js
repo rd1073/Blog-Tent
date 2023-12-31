@@ -3,13 +3,21 @@ import {BsSearch} from 'react-icons/bs'
 import {FaBars} from 'react-icons/fa'
 import { FaPenNib } from "react-icons/fa6";
 import { useAuth } from '../context/authContext'
-import { NavLink, Link ,  useLocation, useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 
 
 const Navbar = () => {
   const [auth, setAuth,
     log, setLog]=useAuth()
+
+    const navigate = useNavigate();
+
+
+    const handleClick = () => {
+      // Replace '/destination' with the path you want to navigate to
+      navigate('/create-post');
+    };
   
     const handleLogout = () => {
 
@@ -66,7 +74,7 @@ const Navbar = () => {
                    
 
                    
-                   <button style={{ fontSize: '2em' }} className="text-white bg-green-500 px-4 py-2 rounded-md block md:inline-block md:w-auto">
+                   <button onClick={handleClick} style={{ fontSize: '2em' }} className="text-white bg-green-500 px-4 py-2 rounded-md block md:inline-block md:w-auto">
                    <FaPenNib />
 
 
