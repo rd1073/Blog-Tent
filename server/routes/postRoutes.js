@@ -70,6 +70,23 @@ router.post('/create',  protect, upload.single('file'), async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
    });
+
+
+router.get('/my-blogs', async (req, res) => {
+
+    const user = req.query.user;
+
+    try {
+      const blogs = await Blogs.find({author: user });
+      res.json(blogs);
+    } catch (error) {
+      console.error('Error fetching posts:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+
+   
+   });
  
  
 module.exports=  router ;

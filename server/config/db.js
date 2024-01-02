@@ -76,6 +76,10 @@ const BlogPostSchema = new mongoose.Schema({
       type: Date,
       default: null,
     },
+    likes: {
+      type: Number,
+      default: 0,
+    },
   });
   
   const Blogs = conn.model('Blogs', BlogPostSchema);

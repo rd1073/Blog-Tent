@@ -9,6 +9,7 @@ import CreatePost from './pages/CreatePost';
 import Footer from './components/Footer';
 import { AuthProvider } from '../src/context/authContext';
 import Banner from './components/Banner';
+import Profile from './pages/Profile';
 
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/profile" element={<Profile />} />
+
 
 
           
