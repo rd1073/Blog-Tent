@@ -18,21 +18,15 @@ const Blogs = () => {
 
       // Update state with the fetched products
       setBlogs(data);
+      
       console.log(data)
     } catch (error) {
       console.error('Error fetching products:', error.message);
     }
   };
 
-  const blogPosts = [
-    {
-      title: 'How to use sticky note for problem solving',
-      image: 'https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      link: '#',
-      date: '20 October 2019',
-    },
-    // Add more blog posts as needed
-  ];
+  
+   
 
 
   return (
@@ -49,9 +43,14 @@ const Blogs = () => {
         <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">Discover...</h1>
       <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
       
+
+
+
+
       
         {/* Blog posts */}
         {blogs.map((blog, index) => (
+            
           <div key={index} className="lg:flex">
             <img className="object-cover w-full h-56 rounded-lg lg:w-64" src={'http://localhost:5000/Images/'+blog.image} alt={blog.title} />
 
@@ -59,6 +58,9 @@ const Blogs = () => {
               <a href="#" className="text-xl font-semibold text-gray-800 hover:underline dark:text-white">
                 {blog.title}
               </a>
+              <h2 className="text-xl font-semibold text-gray-800 hover:underline dark:text-white">
+                {blog.title}
+              </h2>
 
               <span className="text-sm text-gray-500 dark:text-gray-300">Updated: {blog.createdAt}</span>
             </div>
