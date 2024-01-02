@@ -4,7 +4,7 @@ import {FaBars} from 'react-icons/fa'
 import { FaPenNib } from "react-icons/fa6";
 import { useAuth } from '../context/authContext'
 import { useNavigate} from "react-router-dom";
-
+ 
 
 
 const Navbar = () => {
@@ -94,7 +94,7 @@ const Navbar = () => {
               
 
 
-
+           
 
 
 

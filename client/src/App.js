@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import CreatePost from './pages/CreatePost';
 import Footer from './components/Footer';
 import { AuthProvider } from '../src/context/authContext';
+import Banner from './components/Banner';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <div>
         
       <Navbar />
+      <Banner />
 
 
         <Routes>
