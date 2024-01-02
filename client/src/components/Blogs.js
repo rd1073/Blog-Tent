@@ -50,22 +50,23 @@ const Blogs = () => {
       
         {/* Blog posts */}
         {blogs.map((blog, index) => (
-            
-          <div key={index} className="lg:flex">
-            <img className="object-cover w-full h-56 rounded-lg lg:w-64" src={'http://localhost:5000/Images/'+blog.image} alt={blog.title} />
+  <div key={index} className="lg:flex">
+    <img className="object-cover w-full h-56 rounded-lg lg:w-64" src={`http://localhost:5000/Images/${blog.image}`} alt={blog.title} />
 
-            <div className="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="#" className="text-xl font-semibold text-gray-800 hover:underline dark:text-white">
-                {blog.title}
-              </a>
-              <h2 className="text-xl font-semibold text-gray-800 hover:underline dark:text-white">
-                {blog.title}
-              </h2>
+    <div className="flex flex-col justify-between py-6 lg:mx-6">
+      <a href="#" className="text-xl font-semibold text-gray-800 hover:underline dark:text-white">
+        {blog.title}
+      </a>
+       
 
-              <span className="text-sm text-gray-500 dark:text-gray-300">Updated: {blog.createdAt}</span>
-            </div>
-          </div>
-        ))}
+      <span className="text-sm text-gray-500 dark:text-gray-300">Updated: {blog.createdAt}</span>
+      <p className="text-gray-600 dark:text-gray-400">Author: {blog.author}</p>
+      
+       
+    </div>
+  </div>
+))}
+
       </div>
     </div>
   </section>
