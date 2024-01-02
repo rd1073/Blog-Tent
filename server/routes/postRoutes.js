@@ -53,6 +53,23 @@ router.post('/create',  protect, upload.single('file'), async (req, res) => {
       res.status(500).json({ success: false, message: 'Internal server error' });
     }
   });
+
+
+
+
+  router.get('/all-blogs', async (req, res) => {
+    try {
+      // Fetch all products from the database
+      const blogs = await Blogs.find();
+  
+      // Return the products as JSON
+      res.json(blogs);
+      //console.log(products);
+    } catch (error) {
+      console.error('Error fetching products:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+   });
  
  
 module.exports=  router ;
