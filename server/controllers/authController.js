@@ -92,11 +92,14 @@ const Register = async (req, res) => {
 
         if (user && (await bcrypt.compare(password, user.password))) {
           console.log("login succesful");
-          res.json({
-              _id: user._id,
-              username: user.username,
-              token: generateToken(user._id),
-            });
+          const token= generateToken(user._id)
+          res.cookie("token", token);
+          res.status(200).json({
+            _id: user._id,
+            username: user.username,
+            token
+        });
+           
         } else{
           res.status(401);
           throw new Error("Invalid Username or Password");

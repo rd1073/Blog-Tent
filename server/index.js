@@ -7,7 +7,7 @@ const cors = require('cors');
 const multer=require("multer")
 const authRoutes=require("./routes/authRoutes")
 const postRoutes=require("./routes/postRoutes")
-
+const cookieParser=require('cookie-parser')
 
 
 
@@ -22,6 +22,8 @@ app.use(
     }) 
   );
 app.use(cors());
+
+app.use(cookieParser())
 
 
 app.use("/auth", authRoutes);

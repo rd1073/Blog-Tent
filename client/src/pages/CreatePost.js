@@ -57,17 +57,24 @@ const CreatePost = () => {
         data.append('author', post.author)
         // img upload
         try {
-          const imgUpload = await axios.post("http://localhost:5000/blog/create", data);
-           
+          const imgUpload = await axios.post("http://localhost:5000/blog/create", data, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              'Authorization': `Bearer ${user.token}` // Add this line to include the token in the request header
+            }
+          });
+      
+          // Handle the response from the server if needed
+          console.log('Image upload successful', imgUpload.data);
         } catch (err) {
-          console.log(err);
+          // Handle errors
+          console.error('Image upload failed', err);
         }
-      }
       
     navigate("/home")
 
       
-     }
+     }}
 
   return (
     <div>

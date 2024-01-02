@@ -24,7 +24,7 @@ const storage=multer.diskStorage({
   });
 
   
-router.post('/create',  upload.single('file'), async (req, res) => {
+router.post('/create',  protect, upload.single('file'), async (req, res) => {
     try {
       // Access data from the request body
       const { title, desc,   author, tags } = req.body;
