@@ -1,5 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { ImCross } from "react-icons/im";
+import { useAuth } from '../context/authContext';
+import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'; // Assuming you're using React Router for navigation
+
 
  
 const CreatePost = () => {
@@ -8,6 +12,9 @@ const CreatePost = () => {
     const [file,setFile]=useState(null)
     const [tag,setTag]=useState("")
     const [tags,setTags]=useState([])
+    const [user]=useAuth()
+    const navigate = useNavigate();
+
 
     const deleteTag=(i)=>{
         let updatedTags=[...tags]
@@ -20,6 +27,46 @@ const CreatePost = () => {
          updatedTags.push(tag)
          setTag("")
          setTags(updatedTags)
+     }
+
+
+
+     const handleUpload=async (e)=>{
+      e.preventDefault()
+       
+      console.log(user);
+      const post={
+        title,
+        desc,
+        author:user.user,
+        
+        tags:tags
+      }
+
+      const data=new FormData()
+      data.append('file', file)
+       
+
+
+      if (file) {
+        const data=new FormData()
+        data.append('file', file)
+        data.append('title', post.title)
+        data.append('desc', post.desc)
+        data.append('tags', post.tags)
+        data.append('author', post.author)
+        // img upload
+        try {
+          const imgUpload = await axios.post("http://localhost:5000/blog/create", data);
+           
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      
+    navigate("/home")
+
+      
      }
 
   return (
@@ -83,7 +130,7 @@ const CreatePost = () => {
     />
 
     {/* Create Button */}
-    <button
+    <button onClick={handleUpload}
       className='bg-blue-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300'
     >
       Create Post

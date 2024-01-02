@@ -53,13 +53,13 @@ const BlogPostSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    photo:{
+    image:{
         type:String,
         required:false,
         
     },
     author: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: 'User', // Assuming you have a User model
       required: true,
     },

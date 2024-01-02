@@ -16,19 +16,7 @@ const protect = async (req, res, next) => {
     const decoded = jwt.verify(token, 'abcd'); // Use your actual secret key
     //console.log('Decoded Token:', decoded);
 
-    /*if (decoded.exp) {
-      const currentTimestamp = Math.floor(Date.now() / 1000);
-      if (decoded.exp < currentTimestamp) {
-        return res.status(401).json({ msg: 'Token has expired' });
-      }
-    }*/
-    /*if (decoded.userType !== 'seller') {
-      return res.status(401).json({ msg: 'Not authorized as a seller' });
-    }*/
-
-   /* const user = await User.findById(decoded.id, {
-      attributes: { exclude: ['password'] }
-    });*/
+    
     const user = await User.findById(decoded.id).select("-password");
 
 

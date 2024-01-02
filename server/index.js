@@ -4,9 +4,9 @@ const express = require("express");
 const conn=require("./config/db")
 const app = express();
 const cors = require('cors');
-
+const multer=require("multer")
 const authRoutes=require("./routes/authRoutes")
-//const productRoutes=require("./routes/productRoutes")
+const postRoutes=require("./routes/postRoutes")
 
 
 
@@ -23,10 +23,24 @@ app.use(
   );
 app.use(cors());
 
-//auth api
-app.use("/auth", authRoutes);
 
-//poduct routes
-//app.use("/", productRoutes);
+app.use("/auth", authRoutes);
+app.use("/blog", postRoutes);
+
+
+
+
+
+{/*app.post('/upload', upload.single('file'), (req, res) => {
+  console.log(req.file);
+   
+});*/}
+
+
+
+
+
+
+
 
 app.listen(process.env.PORT,console.log(`Server running on 5000`));

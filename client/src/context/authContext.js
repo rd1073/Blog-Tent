@@ -19,6 +19,7 @@ const AuthProvider = ({ children }) => {
       setAuth({
         //...auth,
         user: parseData.username,
+        
         token: parseData.token,
       });
       //console.log(auth)
