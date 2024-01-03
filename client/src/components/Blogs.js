@@ -54,13 +54,15 @@ const Blogs = () => {
     <img className="object-cover w-full h-56 rounded-lg lg:w-64" src={`http://localhost:5000/Images/${blog.image}`} alt={blog.title} />
 
     <div className="flex flex-col justify-between py-6 lg:mx-6">
-      <a href="#" className="text-xl font-semibold text-gray-800 hover:underline dark:text-white">
+      <Link to={`/blog/${blog._id}/${encodeURIComponent(blog.title)}`} className="text-xl font-semibold text-gray-800 hover:underline dark:text-white">
         {blog.title}
-      </a>
+      </Link>
        
 
       <span className="text-sm text-gray-500 dark:text-gray-300">Updated: {blog.createdAt}</span>
       <p className="text-gray-600 dark:text-gray-400">Author: {blog.author}</p>
+      
+
       
        
     </div>

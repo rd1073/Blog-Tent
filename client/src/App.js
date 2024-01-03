@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import { AuthProvider } from '../src/context/authContext';
 import Banner from './components/Banner';
 import Profile from './pages/Profile';
+import BlogPage from './pages/BlogPage';
 
 
 function App() {
@@ -31,7 +32,9 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/blog/:blogId/:blogtitle" element={<BlogPage />} />
 
+          
 
 
           
@@ -40,6 +43,17 @@ function App() {
 
 
         </Routes>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <Footer />
       </div>
     </Router>
 

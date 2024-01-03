@@ -88,5 +88,31 @@ router.get('/my-blogs', async (req, res) => {
    
    });
  
+
+
+   router.get('/:blogId', async (req, res) => {
+
+    const blogId = req.params.blogId;
+    
+    try {
+    
+      const blog = await Blogs.findById(blogId);
+    
+      if (!blog) {
+    
+        return res.status(404).json({ error: 'Blog not found' });
+    
+      }
+    
+      res.json(blog);
+    
+    } catch (error) {
+    
+      console.error('Error fetching blog:', error.message);
+    
+      res.status(500).json({ error: 'Internal Server Error' });
+    
+    }
+  });
  
 module.exports=  router ;
